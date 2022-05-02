@@ -1,0 +1,10 @@
+feladat
+*.pdf
+.vscode
+
+main
+hash_example
+template_array
+hash_table
+
+example*
