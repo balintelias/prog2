@@ -1,4 +1,7 @@
 #include "header.h"
+#include "key.h"
+#include "datapair.h"
+#include "container.h"
 #include <iostream>
 #include <string>
 

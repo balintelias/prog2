@@ -17,7 +17,6 @@ int simple_hash(string key, int key_size, int table_size)
     for (int i = 0; i < key_size; i++)
     {
         sum += *(ptr + i);
-        // sum *= 31;
     }
     sum = sum % table_size;
     return sum;
@@ -97,6 +96,7 @@ int main(int argc, char const *argv[])
 {
     Container ht(TABLE_SIZE);
     data_pair input[5];
+    //nevekhez telefonszámokat rendelünk
     input[0].key = "pelda geza";
     input[0].value = "06301111111";
     input[1].key = "minta janos";
