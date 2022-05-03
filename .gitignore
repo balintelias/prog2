@@ -1,6 +1,9 @@
 feladat
 *.pdf
 .vscode
+*.odt
+*docx
+.~*
 
 main
 hash_example
