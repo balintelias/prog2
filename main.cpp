@@ -24,11 +24,6 @@ int main(int argc, char const *argv[])
     data_pair<std::string, int> mixed("pelda", 454351354);
     mixed.print();
 
-    // TODO: figure out how to pass template class to template class
-
-    // TODO: implement key classes
-
-    //KeyAncestor *xkey = new IntKey(10);
     IntKey xkey(10);
     std::cout<<xkey.hash()<<std::endl;
 

@@ -35,17 +35,4 @@ public:
     int hash();
 };
 
-int IntKey::hash()
-{
-    unsigned int sum = 0;
-    char *ptr = (char *)&key;
-    for (int i = 0; i < sizeof(int); i++)
-    {
-        sum += *(ptr + i);
-        sum *= 31;
-    }
-    sum = sum % TABLE_SIZE;
-    return sum;
-}
-
 #endif
