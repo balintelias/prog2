@@ -1,19 +1,27 @@
 #ifndef DATAPAIR_H
 #define DATAPAIR_H
 
-template <class T>
+#include <iostream>
+
+template <class T, class H>
 class data_pair
 {
 private:
-    KeyAncestor key;
-    T value;
+    T key;
+    H value;
+
 public:
-    data_pair(); //constructor
-    ~data_pair(); //destructor
+    data_pair(T key, H value) : key(key), value(value) {} // constructor
+    //~data_pair(); //destructor
     KeyAncestor getKey();
     void setKey(KeyAncestor param);
     T getValue();
     void setValue(T param);
+
+    void print()
+    {
+        std::cout << "key: " << key << " || value: " << value << std::endl;
+    }
 };
 
 #endif
