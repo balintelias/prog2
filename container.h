@@ -32,6 +32,7 @@ public:
     std::pair<KEY, VALUE> find(KEY key);
     //esetleg:
     //VALUE find(KEY key);
+    //vagy bool visszatérési érték
     // kiírja a tároló tartalmát (teszteléshez)
     void print();
     //operátorok:~~~~~~~~~~~~~~~
