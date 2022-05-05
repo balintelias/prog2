@@ -14,7 +14,7 @@ public:
     // másoló konstruktor
     Container(Container &other);
     // destruktor
-    ~Container();
+    //~Container();
     // hozzáadni - ilyenkor kulcsot és értéket is kell adni paraméterként
     void insertElement(data_pair<T, H> param);
     // módosítani - ilyenkor kulcsot és értéket is kell adni paraméterként
@@ -25,6 +25,9 @@ public:
     bool isKeyInTable(H key);
     // kiírja a tároló tartalmát
     void print();
+    //operátorok:~~~~~~~~~~~~~~~
+    bool operator=(Container &other);
+    bool operator==(Container &other);
 };
 
 #endif

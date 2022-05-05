@@ -4,6 +4,7 @@
 #include <iostream>
 
 //might not need this at all
+//A data_pair osztály helyett, lehet, hogy a C++STL pair típusa is megfelelő
 
 template <class T, class H>
 class data_pair
@@ -14,7 +15,8 @@ private:
 
 public:
     data_pair(T key, H value) : key(key), value(value) {} // constructor
-    //~data_pair(); //destructor
+    data_pair(data_pair &other);
+    ~data_pair(); //destructor
     KeyAncestor getKey();
     void setKey(KeyAncestor param);
     T getValue();
