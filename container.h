@@ -30,7 +30,9 @@ public:
     bool erase(KEY key);
     // lekérdezni h a kulcshoz van-e érték tárolva - ilyenkor a kulcsot kell adni paraméterként
     std::pair<KEY, VALUE> find(KEY key);
-    // kiírja a tároló tartalmát
+    //esetleg:
+    //VALUE find(KEY key);
+    // kiírja a tároló tartalmát (teszteléshez)
     void print();
     //operátorok:~~~~~~~~~~~~~~~
     //értékadás operátor
