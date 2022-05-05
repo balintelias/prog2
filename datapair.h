@@ -17,10 +17,10 @@ public:
     data_pair(T key, H value) : key(key), value(value) {} // constructor
     data_pair(data_pair &other);
     ~data_pair(); //destructor
-    KeyAncestor getKey();
-    void setKey(KeyAncestor param);
-    T getValue();
-    void setValue(T param);
+    T getKey();
+    void setKey(T param);
+    H getValue();
+    void setValue(H param);
 
     void print()
     {
