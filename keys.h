@@ -4,6 +4,8 @@
 #include <string>
 #include <functional>
 
+#define TABLE_SIZE 128
+
 class StrKey
 {
 private:
@@ -20,7 +22,9 @@ public:
 int StrKey::hash()
 {
     std::hash<std::string> mystdhash;
-    return mystdhash(key);
+    int index = mystdhash(key);
+    index = index % TABLE_SIZE;
+    return index;
 }
 
 #endif

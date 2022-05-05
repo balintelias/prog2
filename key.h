@@ -5,6 +5,8 @@
 
 #define TABLE_SIZE 128
 
+//aktuális megvalósítás a keys.h fileban, ezt még nem törlöm
+
 class KeyAncestor
 {
 public:

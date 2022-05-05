@@ -8,7 +8,7 @@
 typedef std::string KEY;
 typedef std::string VALUE;
 
-//egyelőre nemgenerikus megvalósítás
+//egyelőre nemgenerikus megvalósítás, std::string kulcs és std::string értékkel
 class Container
 {
 private:
