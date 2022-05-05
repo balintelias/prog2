@@ -1,11 +1,18 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
 
-template <class T, class H>
+#include <list>
+#include <utility>
+
+//template <class T, class H>
+typedef std::string KEY;
+typedef std::string VALUE;
+
+//egyelőre nemgenerikus megvalósítás
 class Container
 {
 private:
-    list<data_pair<T, H>> *table;
+    std::list<std::pair<KEY, VALUE>> *table;
     int size;
 
 public:
@@ -14,20 +21,24 @@ public:
     // másoló konstruktor
     Container(Container &other);
     // destruktor
-    //~Container();
+    ~Container();
     // hozzáadni - ilyenkor kulcsot és értéket is kell adni paraméterként
-    void insertElement(data_pair<T, H> param);
-    // módosítani - ilyenkor kulcsot és értéket is kell adni paraméterként
-    bool editElement(data_pair<T, H> param);
+    void insert(std::pair<KEY, VALUE> param);
+    // módosításra az std::map insert_or_assign metódusához hasonló metódus - ilyenkor kulcsot és értéket is kell adni paraméterként
+    bool insert_or_assign(std::pair<KEY, VALUE> param);
     // törölni - ilyenkor kulcsot kell adni paraméterként
-    bool deleteElement(H key);
+    bool erase(KEY key);
     // lekérdezni h a kulcshoz van-e érték tárolva - ilyenkor a kulcsot kell adni paraméterként
-    bool isKeyInTable(H key);
+    std::pair<KEY, VALUE> find(KEY key);
     // kiírja a tároló tartalmát
     void print();
     //operátorok:~~~~~~~~~~~~~~~
+    //értékadás operátor
     bool operator=(Container &other);
+    //egyenlőség vizsgálat
     bool operator==(Container &other);
+    //indexelő operátor
+    bool operator[](Container &other);
 };
 
 #endif
