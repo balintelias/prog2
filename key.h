@@ -1,5 +1,5 @@
-#ifndef KEYS_H
-#define KEYS_H
+#ifndef KEY_H
+#define KEY_H
 
 #include <string>
 #include <functional>
