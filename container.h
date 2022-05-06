@@ -4,7 +4,7 @@
 #include <list>
 #include <utility>
 
-//template <class T, class H>
+//template <class KEY, class VALUE>
 typedef std::string KEY;
 typedef std::string VALUE;
 
@@ -12,23 +12,25 @@ typedef std::string VALUE;
 class Container
 {
 private:
-    std::list<std::pair<KEY, VALUE>> *table;
+    std::list<std::pair<KEY, VALUE>> *table; //TODO: std::vector?
     int size;
 
 public:
     // konstruktor
-    Container(int param);
+    Container(int param = 128);
     // másoló konstruktor
     Container(Container &other);
     // destruktor
     ~Container();
     // hozzáadni - ilyenkor kulcsot és értéket is kell adni paraméterként
-    void insert(std::pair<KEY, VALUE> param);
-    // módosításra az std::map insert_or_assign metódusához hasonló metódus - ilyenkor kulcsot és értéket is kell adni paraméterként
-    bool insert_or_assign(std::pair<KEY, VALUE> param);
+    void insert(KEY key, VALUE value);
+    // módosításra az std::map insert_or_assign metódusához hasonló metódus
+    //ilyenkor kulcsot és értéket is kell adni paraméterként
+    bool insert_or_assign(KEY key, VALUE value);
     // törölni - ilyenkor kulcsot kell adni paraméterként
     bool erase(KEY key);
-    // lekérdezni h a kulcshoz van-e érték tárolva - ilyenkor a kulcsot kell adni paraméterként
+    // lekérdezni h a kulcshoz van-e érték tárolva
+    //ilyenkor a kulcsot kell adni paraméterként
     std::pair<KEY, VALUE> find(KEY key);
     //esetleg:
     //VALUE find(KEY key);

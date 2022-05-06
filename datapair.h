@@ -4,7 +4,7 @@
 #include <iostream>
 
 //might not need this at all
-//A data_pair osztály helyett, lehet, hogy a C++STL pair típusa is megfelelő
+//A data_pair osztály helyett lehet, hogy a C++STL pair típusa is megfelelő
 
 //valószínűleg std::pairt fogok használni, de ezt nem törlöm, amíg nem biztos, hogy nincs rá szükség
 
