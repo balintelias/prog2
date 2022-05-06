@@ -3,6 +3,7 @@
 
 #include <list>
 #include <utility>
+#include <string>
 
 //template <class KEY, class VALUE>
 typedef std::string KEY;

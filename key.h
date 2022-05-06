@@ -18,13 +18,4 @@ public:
     int hash(); //megvalósítás: std::hash
 };
 
-//szemléltető implementáció
-int StrKey::hash()
-{
-    std::hash<std::string> mystdhash;
-    int index = mystdhash(key);
-    index = index % TABLE_SIZE;
-    return index;
-}
-
 #endif
