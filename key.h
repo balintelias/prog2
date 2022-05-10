@@ -4,15 +4,12 @@
 #include <string>
 #include <functional>
 
-#define TABLE_SIZE 128
-
 class StrKey
 {
 private:
     std::string key;
 public:
-    StrKey(int param);
-    ~StrKey();
+    StrKey(std::string param);
     void setKey(std::string param);
     std::string getKey();
     int hash(); //megvalósítás: std::hash

@@ -1,9 +1,24 @@
 #include "key.h"
 
-int StrKey::hash() //TODO: megcsinálni, hogy a kulcs lássa a tároló méretét
+#include <string>
+
+StrKey::StrKey(std::string param)
+{
+    key = param;
+}
+
+void StrKey::setKey(std::string param)
+{
+    key = param;
+}
+
+std::string StrKey::getKey()
+{
+    return key;
+}
+
+int StrKey::hash()
 {
     std::hash<std::string> mystdhash;
-    int index = mystdhash(key);
-    index = index % TABLE_SIZE;
-    return index;
+    return mystdhash(key);
 }
