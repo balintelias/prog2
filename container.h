@@ -1,12 +1,13 @@
 #ifndef CONTAINER_H
 #define CONTAINER_H
 
+#include "key.h"
 #include <list>
 #include <utility>
 #include <string>
 
 //template <class KEY, class VALUE>
-typedef std::string KEY;
+typedef StrKey KEY;
 typedef std::string VALUE;
 
 //egyelőre nemgenerikus megvalósítás, std::string kulcs és std::string értékkel
@@ -14,7 +15,7 @@ class Container
 {
 private:
     std::list<std::pair<KEY, VALUE>> *table; //TODO: std::vector?
-    int size;
+    int table_size;
 
 public:
     // konstruktor
@@ -24,15 +25,15 @@ public:
     // destruktor
     ~Container();
     // hozzáadni - ilyenkor kulcsot és értéket is kell adni paraméterként
-    void insert(KEY key, VALUE value);
+    void insert(KEY &key, VALUE &value);
     // módosításra az std::map insert_or_assign metódusához hasonló metódus
     //ilyenkor kulcsot és értéket is kell adni paraméterként
-    bool insert_or_assign(KEY key, VALUE value);
+    bool insert_or_assign(KEY &key, VALUE &value);
     // törölni - ilyenkor kulcsot kell adni paraméterként
-    bool erase(KEY key);
+    bool erase(KEY &key);
     // lekérdezni h a kulcshoz van-e érték tárolva
     //ilyenkor a kulcsot kell adni paraméterként
-    std::pair<KEY, VALUE> find(KEY key);
+    std::pair<KEY, VALUE> find(KEY &key);
     //esetleg:
     //VALUE find(KEY key);
     //vagy bool visszatérési érték

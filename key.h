@@ -13,6 +13,10 @@ public:
     void setKey(std::string param);
     std::string getKey();
     int hash(); //megvalósítás: std::hash
+    bool operator== (StrKey const &other)
+    {
+        return key == other.key;
+    }
 };
 
 #endif
