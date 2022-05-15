@@ -25,6 +25,6 @@ int main(int argc, char const *argv[])
     cont.insert(key1, value1); //???????
     std::pair<KEY, VALUE> xd = cont.find(key1);
     std::cout << (xd.first).getKey() << " " << xd.second << std::endl;
-
+    std::cout << cont[key1];
     return 0;
 }

@@ -12,7 +12,7 @@ public:
     StrKey(std::string param);
     void setKey(std::string param);
     std::string getKey();
-    int hash(); //megvalósítás: std::hash
+    int hash(); //implementation: std::hash
     bool operator== (StrKey const &other)
     {
         return key == other.key;

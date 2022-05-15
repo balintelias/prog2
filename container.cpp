@@ -39,7 +39,7 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     // hash key
     int index = key.hash();
     index = index % table_size;
-    // TODO: ezt befejezni
+    // TODO: finish this
     return true;
 }
 
@@ -48,11 +48,11 @@ bool Container::erase(KEY &key)
     // hash key
     int index = key.hash();
     index = index % table_size;
-    // TODO: find in list:
+    // TODO: find in list
     return true;
 }
 
-std::pair<KEY, VALUE> Container::find(KEY &key) // TODO: find() máshogy működik az std::map-ben
+std::pair<KEY, VALUE> Container::find(KEY &key) // TODO: find() works differently in std::map
 {
     int index = key.hash();
     index = index % table_size;
@@ -63,7 +63,7 @@ std::pair<KEY, VALUE> Container::find(KEY &key) // TODO: find() máshogy működ
             return j;
         }
     }
-    // TODO: ha nincs benne, akkor valami más, preferably iterator
+    // TODO: if not in container, something other, preferably iterator
 }
 
 void Container::operator=(Container &other)

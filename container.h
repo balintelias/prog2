@@ -11,7 +11,7 @@
 typedef StrKey KEY;
 typedef std::string VALUE;
 
-// egyelőre nemgenerikus megvalósítás, StrKey kulcs és std::string értékkel
+// ungeneric implementation, StrKey key and std::string value
 class Container
 {
 private:
@@ -20,33 +20,33 @@ private:
     int table_size;
 
 public:
-    // konstruktor
+    // constructor
     Container(int param = 128);
-    // másoló konstruktor
+    // copy constructor
     Container(Container &other);
     // destruktor
     ~Container();
-    // hozzáadni - ilyenkor kulcsot és értéket is kell adni paraméterként
+    // insert - parameter: KEY and VALUE
     void insert(KEY &key, VALUE &value);
-    // módosításra az std::map insert_or_assign metódusához hasonló metódus
-    // ilyenkor kulcsot és értéket is kell adni paraméterként
+    // to edit - method similar to std::map insert_or_assign method
+    // parameter: KEY and VALUE
     bool insert_or_assign(KEY &key, VALUE &value);
-    // törölni - ilyenkor kulcsot kell adni paraméterként
+    // delete - parameter: KEY
     bool erase(KEY &key);
-    // lekérdezni h a kulcshoz van-e érték tárolva
-    // ilyenkor a kulcsot kell adni paraméterként
+    // ask if KEY has a VALUE associated with it
+    // parameter: KEY
     std::pair<KEY, VALUE> find(KEY &key);
-    // esetleg:
+    // optional:
     // VALUE find(KEY key);
-    // vagy bool visszatérési érték
-    // kiírja a tároló tartalmát (teszteléshez)
+    // or boolean return value
+    // print the contents of container (for testing)
     void print();
-    // operátorok:~~~~~~~~~~~~~~~
-    //értékadás operátor
+    // operators:~~~~~~~~~~~~~~~
+    //assigning operator
     void operator=(Container &other);
-    // egyenlőség vizsgálat
+    // equality test
     bool operator==(Container &other);
-    // indexelő operátor
+    // indexing operator
     VALUE operator[](KEY key);
 };
 
