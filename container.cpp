@@ -4,8 +4,6 @@
 #include <utility>
 #include <bits/stdc++.h>
 
-
-
 Container::Container(int param)
 {
     this->table_size = param;
@@ -43,6 +41,11 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     int index = key.hash();
     index = index % table_size;
     // TODO: finish this
+    std::pair<int, std::pair<KEY, VALUE>> ret = this->find(key);
+    if (ret.first == 0)
+        return false;
+
+    ret.second.second = value;
     return true;
 }
 
@@ -61,7 +64,7 @@ void Container::erase(KEY &key)
     //([](int n){ return n > 10; });
 }
 
-std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) //find() works differently in std::map
+std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) // find() works differently in std::map
 {
     int index = key.hash();
     index = index % table_size;
@@ -75,8 +78,8 @@ std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) //find() works d
     }
     // no instance of key in container:
     VALUE retvalue();
-    //std::pair<KEY, VALUE> retpair(key, retvalue);
-    std::pair<KEY, VALUE> pair5(key,"06305555555");
+    // std::pair<KEY, VALUE> retpair(key, retvalue);
+    std::pair<KEY, VALUE> pair5(key, "06305555555");
     std::pair<int, std::pair<KEY, VALUE>> ret(0, pair5);
     return ret;
 }
@@ -106,5 +109,5 @@ bool Container::operator==(Container &other)
 VALUE Container::operator[](KEY &key)
 {
     return find(key).second.second;
-    //TODO: exception, if no instance of key in container
+    // TODO: exception, if no instance of key in container
 }
