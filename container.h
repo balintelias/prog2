@@ -32,10 +32,10 @@ public:
     // parameter: KEY and VALUE
     bool insert_or_assign(KEY &key, VALUE &value);
     // delete - parameter: KEY
-    bool erase(KEY &key);
+    void erase(KEY &key);
     // ask if KEY has a VALUE associated with it
     // parameter: KEY
-    std::pair<KEY, VALUE> find(KEY &key);
+    std::pair<int, std::pair<KEY, VALUE>> find(KEY &key);
     // optional:
     // VALUE find(KEY key);
     // or boolean return value
@@ -47,7 +47,7 @@ public:
     // equality test
     bool operator==(Container &other);
     // indexing operator
-    VALUE operator[](KEY key);
+    VALUE operator[](KEY &key);
 };
 
 #endif

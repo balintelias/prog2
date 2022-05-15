@@ -2,6 +2,9 @@
 
 #include <list>
 #include <utility>
+#include <bits/stdc++.h>
+
+
 
 Container::Container(int param)
 {
@@ -43,16 +46,22 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     return true;
 }
 
-bool Container::erase(KEY &key)
+void Container::erase(KEY &key)
 {
     // hash key
     int index = key.hash();
     index = index % table_size;
-    // TODO: find in list
-    return true;
+
+    /*// iterator
+    std::list<std::pair<KEY, VALUE>>::iterator it;
+    it = std::find(table[index].begin(), table[index].end(), );*/
+
+    table[index].remove_if([key](std::pair<KEY, VALUE> x)
+                           { return x.first == key; });
+    //([](int n){ return n > 10; });
 }
 
-std::pair<KEY, VALUE> Container::find(KEY &key) // TODO: find() works differently in std::map
+std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) //find() works differently in std::map
 {
     int index = key.hash();
     index = index % table_size;
@@ -60,10 +69,16 @@ std::pair<KEY, VALUE> Container::find(KEY &key) // TODO: find() works differentl
     {
         if (j.first == key)
         {
-            return j;
+            std::pair<int, std::pair<KEY, VALUE>> ret(1, j);
+            return ret;
         }
     }
-    // TODO: if not in container, something other, preferably iterator
+    // no instance of key in container:
+    VALUE retvalue();
+    //std::pair<KEY, VALUE> retpair(key, retvalue);
+    std::pair<KEY, VALUE> pair5(key,"06305555555");
+    std::pair<int, std::pair<KEY, VALUE>> ret(0, pair5);
+    return ret;
 }
 
 void Container::operator=(Container &other)
@@ -88,7 +103,8 @@ bool Container::operator==(Container &other)
     return true;
 }
 
-VALUE Container::operator[](KEY key)
+VALUE Container::operator[](KEY &key)
 {
-    return find(key).second;
+    return find(key).second.second;
+    //TODO: exception, if no instance of key in container
 }
