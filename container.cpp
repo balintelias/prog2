@@ -1,5 +1,6 @@
 #include "container.h"
 #include "error.h"
+#include "key.h"
 
 #include <list>
 #include <utility>
@@ -48,7 +49,7 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
         element.second = value;
         return true;
     }
-    catch(NotInList &e)
+    catch (NotInList &e)
     {
         std::cerr << e.what() << '\n';
         return false;
@@ -85,7 +86,6 @@ std::pair<KEY, VALUE> Container::find_helper(KEY &key)
     throw ex;
 }
 
-
 std::pair<KEY, VALUE> Container::find(KEY &key) // find() works differently in std::map
 {
     try
@@ -93,11 +93,22 @@ std::pair<KEY, VALUE> Container::find(KEY &key) // find() works differently in s
         std::pair<KEY, VALUE> ret = find_helper(key);
         return ret;
     }
-    catch(NotInList e)
+    catch (NotInList e)
     {
         std::cerr << e.what() << '\n';
     }
-    //TODO: control reaches end of non-void function [-Wreturn-type] gcc
+    // TODO: control reaches end of non-void function [-Wreturn-type] gcc
+}
+
+void Container::print()
+{
+    for (int i = 0; i < table_size; i++)
+    {
+        for (auto j : table[i])
+        {
+            std::cout << j.first.getKey() << j.second() << std::endl; //TODO: print()
+        }
+    }
 }
 
 void Container::operator=(Container &other)
@@ -128,9 +139,9 @@ VALUE Container::operator[](KEY &key)
     {
         return find(key).second;
     }
-    catch(NotInList &e)
+    catch (NotInList &e)
     {
         std::cerr << e.what() << '\n';
     }
-    //TODO: control reaches end of non-void function [-Wreturn-type] gcc
+    // TODO: control reaches end of non-void function [-Wreturn-type] gcc
 }

@@ -7,6 +7,11 @@ StrKey::StrKey(std::string param)
     key = param;
 }
 
+StrKey::StrKey(const char* param)
+{
+    key = param;
+}
+
 void StrKey::setKey(std::string param)
 {
     key = param;

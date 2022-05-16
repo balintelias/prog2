@@ -9,12 +9,10 @@ class NotInList : public std::exception
 private:
     /* data */
 public:
-    NotInList(/* args */);
-    ~NotInList();
     std::string what()
     {
         return "No instance of key in container.";
-    };
+    }
 };
 
 #endif
