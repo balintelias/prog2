@@ -14,7 +14,7 @@ public:
     std::string what()
     {
         return "No instance of key in container.";
-    }
+    };
 };
 
 #endif

@@ -1,4 +1,5 @@
 #include "container.h"
+#include "error.h"
 
 #include <list>
 #include <utility>
@@ -40,13 +41,18 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     // hash key
     int index = key.hash();
     index = index % table_size;
-    // TODO: finish this
-    std::pair<int, std::pair<KEY, VALUE>> ret = this->find(key);
-    if (ret.first == 0)
+    // TODO: finish this with find_helper()
+    try
+    {
+        std::pair<KEY, VALUE> element = find_helper(key);
+        element.second = value;
+        return true;
+    }
+    catch(NotInList &e)
+    {
+        std::cerr << e.what() << '\n';
         return false;
-
-    ret.second.second = value;
-    return true;
+    }
 }
 
 void Container::erase(KEY &key)
@@ -64,7 +70,7 @@ void Container::erase(KEY &key)
     //([](int n){ return n > 10; });
 }
 
-std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) // find() works differently in std::map
+std::pair<KEY, VALUE> Container::find_helper(KEY &key)
 {
     int index = key.hash();
     index = index % table_size;
@@ -72,16 +78,26 @@ std::pair<int, std::pair<KEY, VALUE>> Container::find(KEY &key) // find() works 
     {
         if (j.first == key)
         {
-            std::pair<int, std::pair<KEY, VALUE>> ret(1, j);
-            return ret;
+            return j;
         }
     }
-    // no instance of key in container:
-    VALUE retvalue();
-    // std::pair<KEY, VALUE> retpair(key, retvalue);
-    std::pair<KEY, VALUE> pair5(key, "06305555555");
-    std::pair<int, std::pair<KEY, VALUE>> ret(0, pair5);
-    return ret;
+    NotInList ex;
+    throw ex;
+}
+
+
+std::pair<KEY, VALUE> Container::find(KEY &key) // find() works differently in std::map
+{
+    try
+    {
+        std::pair<KEY, VALUE> ret = find_helper(key);
+        return ret;
+    }
+    catch(NotInList e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    //TODO: control reaches end of non-void function [-Wreturn-type] gcc
 }
 
 void Container::operator=(Container &other)
@@ -108,6 +124,13 @@ bool Container::operator==(Container &other)
 
 VALUE Container::operator[](KEY &key)
 {
-    return find(key).second.second;
-    // TODO: exception, if no instance of key in container
+    try
+    {
+        return find(key).second;
+    }
+    catch(NotInList &e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    //TODO: control reaches end of non-void function [-Wreturn-type] gcc
 }

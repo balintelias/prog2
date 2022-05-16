@@ -18,7 +18,7 @@ private:
     std::list<std::pair<KEY, VALUE>> *table; 
     //std::vector<std::list<std::pair<KEY, VALUE>>> table; std::vector
     int table_size;
-
+    std::pair<KEY, VALUE> find_helper(KEY &key);
 public:
     // constructor
     Container(int param = 128);
@@ -35,10 +35,7 @@ public:
     void erase(KEY &key);
     // ask if KEY has a VALUE associated with it
     // parameter: KEY
-    std::pair<int, std::pair<KEY, VALUE>> find(KEY &key);
-    // optional:
-    // VALUE find(KEY key);
-    // or boolean return value
+    std::pair<KEY, VALUE> find(KEY &key);
     // print the contents of container (for testing)
     void print();
     // operators:~~~~~~~~~~~~~~~
