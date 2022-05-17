@@ -31,7 +31,7 @@ void Container::insert(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
-    index = index % table_size;
+    index = abs(index % table_size);
     // push back in list
     std::pair<KEY, VALUE> node(key, value);
     table[index].push_back(node);
@@ -41,30 +41,26 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
-    index = index % table_size;
-    // TODO: finish this with find_helper()
-    try
+    index = abs(index % table_size);
+
+    for (auto j : table[index])
     {
-        std::pair<KEY, VALUE> element = find_helper(key);
-        element.second = value;
-        return true;
+        if (j.first == key)
+        {
+            erase(key);
+            insert(key, value);
+            return true;
+        }
     }
-    catch (NotInList &e)
-    {
-        std::cerr << e.what() << '\n';
-        return false;
-    }
+    insert(key, value);
+    return false;
 }
 
-void Container::erase(KEY &key)
+void Container::erase(KEY &key) // TODO: erre van std::list metódus, de iterátorokkal
 {
     // hash key
     int index = key.hash();
-    index = index % table_size;
-
-    /*// iterator
-    std::list<std::pair<KEY, VALUE>>::iterator it;
-    it = std::find(table[index].begin(), table[index].end(), );*/
+    index = abs(index % table_size);
 
     table[index].remove_if([key](std::pair<KEY, VALUE> x)
                            { return x.first == key; });
@@ -74,12 +70,12 @@ void Container::erase(KEY &key)
 std::pair<KEY, VALUE> Container::find_helper(KEY &key)
 {
     int index = key.hash();
-    index = index % table_size;
+    index = abs(index % table_size);
     for (auto j : table[index])
     {
         if (j.first == key)
         {
-            return j;
+            return j; // TODO: return modifiable value
         }
     }
     NotInList ex;
@@ -106,7 +102,7 @@ void Container::print()
     {
         for (auto j : table[i])
         {
-            std::cout << j.first.getKey() << j.second() << std::endl; //TODO: print()
+            std::cout << j.first.getKey() << j.second << std::endl;
         }
     }
 }

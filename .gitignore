@@ -4,6 +4,7 @@ feladat
 *.odt
 *docx
 .~*
+tesztelés*
 
 main
 hash_example

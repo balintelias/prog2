@@ -16,9 +16,13 @@ class Container
 {
 private:
     std::list<std::pair<KEY, VALUE>> *table; 
-    //std::vector<std::list<std::pair<KEY, VALUE>>> table; std::vector
     int table_size;
+    // find auxiliary function
     std::pair<KEY, VALUE> find_helper(KEY &key);
+    // insert auxiliary function - parameter: KEY and VALUE
+    void insert(KEY &key, VALUE &value);
+    //erase auxiliary function?
+
 public:
     // constructor
     Container(int param = 128);
@@ -26,9 +30,8 @@ public:
     Container(Container &other);
     // destruktor
     ~Container();
-    // insert - parameter: KEY and VALUE
-    void insert(KEY &key, VALUE &value);
-    // to edit - method similar to std::map insert_or_assign method
+    
+    // to insert/edit - method similar to std::map insert_or_assign method
     // parameter: KEY and VALUE
     bool insert_or_assign(KEY &key, VALUE &value);
     // delete - parameter: KEY

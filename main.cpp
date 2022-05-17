@@ -16,19 +16,21 @@ int main(int argc, char const *argv[])
 
     KEY key1 = "pelda geza";
     VALUE value1 = "06301111111";
-    cont.insert(key1, value1);
+    cont.insert_or_assign(key1, value1);
     cont.print();
+    std::cout<<std::endl;
 
-    /* cont.insert(pair1);
-    cont.insert(pair1);
-    cont.insert(pair1);
-    cont.insert(pair1); */
+    KEY key2 = "minta janos";
+    VALUE value2 = "06302222222";
+    cont.insert_or_assign(key2, value2);
+    cont.print();
+    std::cout<<std::endl;
 
-    /*StrKey key1("pelda geza");
-    std::string value1("06301111111");
-    cont.insert(key1, value1); //???????
-    std::pair<KEY, VALUE> xd = cont.find(key1);
-    std::cout << (xd.first).getKey() << " " << xd.second << std::endl;
-    std::cout << cont[key1];*/
+    VALUE value21 = "06302222233";
+    //cont.erase(key2);
+    cont.insert_or_assign(key2, value21);
+    cont.print();
+    std::cout<<std::endl;
+
     return 0;
 }
