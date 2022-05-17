@@ -56,7 +56,7 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     return false;
 }
 
-void Container::erase(KEY &key) // TODO: erre van std::list metódus, de iterátorokkal
+void Container::erase(KEY &key)
 {
     // hash key
     int index = key.hash();
