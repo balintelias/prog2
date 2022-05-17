@@ -12,10 +12,11 @@
 #include <bits/stdc++.h>
 
 // template <class KEY, class VALUE>
-typedef StrKey KEY;
-typedef std::string VALUE;
+// typedef StrKey KEY;
+// typedef std::string VALUE;
 
 // ungeneric implementation, StrKey key and std::string value
+template <class KEY, class VALUE>
 class Container
 {
 private:
@@ -54,13 +55,15 @@ public:
     VALUE operator[](KEY &key);
 };
 
-Container::Container(int param)
+template <class KEY, class VALUE>
+Container<KEY, VALUE>::Container(int param)
 {
     this->table_size = param;
     table = new std::list<std::pair<KEY, VALUE>>[table_size];
 }
 
-Container::Container(Container &other)
+template <class KEY, class VALUE>
+Container<KEY, VALUE>::Container(Container &other)
 {
     this->table_size = other.table_size;
     table = new std::list<std::pair<KEY, VALUE>>[table_size];
@@ -70,12 +73,14 @@ Container::Container(Container &other)
     }
 }
 
-Container::~Container()
+template <class KEY, class VALUE>
+Container<KEY, VALUE>::~Container()
 {
     delete[] table;
 }
 
-void Container::insert(KEY &key, VALUE &value)
+template <class KEY, class VALUE>
+void Container<KEY, VALUE>::insert(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
@@ -85,7 +90,8 @@ void Container::insert(KEY &key, VALUE &value)
     table[index].push_back(node);
 }
 
-bool Container::insert_or_assign(KEY &key, VALUE &value)
+template <class KEY, class VALUE>
+bool Container<KEY, VALUE>::insert_or_assign(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
@@ -104,7 +110,8 @@ bool Container::insert_or_assign(KEY &key, VALUE &value)
     return false;
 }
 
-void Container::erase(KEY &key)
+template <class KEY, class VALUE>
+void Container<KEY, VALUE>::erase(KEY &key)
 {
     // hash key
     int index = key.hash();
@@ -115,7 +122,8 @@ void Container::erase(KEY &key)
     //([](int n){ return n > 10; });
 }
 
-std::pair<KEY, VALUE> Container::find_helper(KEY &key)
+template <class KEY, class VALUE>
+std::pair<KEY, VALUE> Container<KEY, VALUE>::find_helper(KEY &key)
 {
     int index = key.hash();
     index = abs(index % table_size);
@@ -130,14 +138,16 @@ std::pair<KEY, VALUE> Container::find_helper(KEY &key)
     throw ex;
 }
 
-std::pair<KEY, VALUE> Container::find(KEY &key) // find() works differently in std::map
+template <class KEY, class VALUE>
+std::pair<KEY, VALUE> Container<KEY, VALUE>::find(KEY &key) // find() works differently in std::map
 {
 
     std::pair<KEY, VALUE> ret = find_helper(key);
     return ret;
 }
 
-void Container::print()
+template <class KEY, class VALUE>
+void Container<KEY, VALUE>::print()
 {
     for (int i = 0; i < table_size; i++)
     {
@@ -148,7 +158,8 @@ void Container::print()
     }
 }
 
-void Container::operator=(Container &other)
+template <class KEY, class VALUE>
+void Container<KEY, VALUE>::operator=(Container<KEY, VALUE> &other)
 {
     this->table_size = other.table_size;
     //
@@ -158,7 +169,8 @@ void Container::operator=(Container &other)
     }
 }
 
-bool Container::operator==(Container &other)
+template <class KEY, class VALUE>
+bool Container<KEY, VALUE>::operator==(Container<KEY, VALUE> &other)
 {
     if (this->table_size != other.table_size)
         return false;
@@ -170,7 +182,8 @@ bool Container::operator==(Container &other)
     return true;
 }
 
-VALUE Container::operator[](KEY &key)
+template <class KEY, class VALUE>
+VALUE Container<KEY, VALUE>::operator[](KEY &key)
 {
 
     return find(key).second;
