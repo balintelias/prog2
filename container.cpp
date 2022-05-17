@@ -84,15 +84,15 @@ std::pair<KEY, VALUE> Container::find_helper(KEY &key)
 
 std::pair<KEY, VALUE> Container::find(KEY &key) // find() works differently in std::map
 {
-    try
+    //try
     {
         std::pair<KEY, VALUE> ret = find_helper(key);
         return ret;
     }
-    catch (NotInList e)
+    /* catch (NotInList e)
     {
         std::cerr << e.what() << '\n';
-    }
+    } */
     // TODO: control reaches end of non-void function [-Wreturn-type] gcc
 }
 
@@ -131,13 +131,13 @@ bool Container::operator==(Container &other)
 
 VALUE Container::operator[](KEY &key)
 {
-    try
+    //try
     {
         return find(key).second;
     }
-    catch (NotInList &e)
+    /* catch (NotInList &e)
     {
         std::cerr << e.what() << '\n';
-    }
+    } */
     // TODO: control reaches end of non-void function [-Wreturn-type] gcc
 }
