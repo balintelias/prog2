@@ -54,7 +54,7 @@ int main(int argc, char const *argv[])
     {
         std::cerr << e.what() << '\n';
     }
-    std::cout<<"operator[]"<<std::endl;
+    std::cout<<"operator[]:"<<std::endl;
     try
     {
         std::cout<<cont[key2]<<std::endl;
