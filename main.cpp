@@ -1,31 +1,32 @@
-#include "header.h"
 #include "key.h"
-#include "container.h"
+#include "container.hpp"
 #include "error.h"
 
 #include <iostream>
 #include <string>
 
+//Első tesztfeladat, StrKey és std::string értékek vizsgálata
+
 int main(int argc, char const *argv[])
 {
-    Container cont(5);
+    Container<StrKey, std::string> cont(5);
 
     std::cout << "insert_or_assign metódus tesztje:" << std::endl
               << std::endl;
 
-    KEY key1 = "pelda geza";
-    VALUE value1 = "06301111111";
+    StrKey key1 = "pelda geza";
+    std::string value1 = "06301111111";
     cont.insert_or_assign(key1, value1);
     cont.print();
     std::cout << std::endl;
 
-    KEY key2 = "minta janos";
-    VALUE value2 = "06302222222";
+    StrKey key2 = "minta janos";
+    std::string value2 = "06302222222";
     cont.insert_or_assign(key2, value2);
     cont.print();
     std::cout << std::endl;
 
-    VALUE value21 = "06302222233";
+    std::string value21 = "06302222233";
     cont.insert_or_assign(key2, value21);
     cont.print();
     std::cout << std::endl;
@@ -33,7 +34,7 @@ int main(int argc, char const *argv[])
     std::cout << "find metódus és operator[] tesztje:" << std::endl
               << std::endl;
 
-    KEY key3 = "koder robert";
+    StrKey key3 = "koder robert";
     std::cout << "find():" << std::endl;
 
     try
@@ -92,9 +93,9 @@ int main(int argc, char const *argv[])
 
     std::cout << "másoló konstruktor tesztje:" << std::endl
               << std::endl;
-    KEY keycopy = "Varga Beles";
-    VALUE valuecpy = "0606060606060";
-    Container copied(cont);
+    StrKey keycopy = "Varga Beles";
+    std::string valuecpy = "0606060606060";
+    Container<StrKey, std::string> copied(cont);
     copied.insert_or_assign(keycopy, valuecpy);
     std::cout << "Copied:" << std::endl;
     copied.print();
@@ -103,7 +104,7 @@ int main(int argc, char const *argv[])
 
     std::cout << "operator= tesztje:" << std::endl
               << std::endl;
-    Container assigned = copied;
+    Container<StrKey, std::string> assigned = copied;
     assigned.print();
 
     std::cout << "operator== tesztje:" << std::endl

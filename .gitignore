@@ -11,5 +11,7 @@ hash_example
 template_array
 hash_table
 simple_hashtable
+test2
 
 example*
+*.out

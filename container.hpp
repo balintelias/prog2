@@ -1,5 +1,5 @@
-#ifndef CONTAINER_H
-#define CONTAINER_H
+#ifndef CONTAINER_HPP
+#define CONTAINER_HPP
 
 #include "key.h"
 #include "error.h"
@@ -167,6 +167,19 @@ void Container<KEY, VALUE>::operator=(Container<KEY, VALUE> &other)
     {
         table[i] = other.table[i];
     }
+}
+
+template <class KEY, class VALUE>
+bool Container<KEY, VALUE>::operator==(Container<KEY, VALUE> &other)
+{
+    if (this->table_size != other.table_size)
+        return false;
+    for (int i = 0; i < table_size; i++)
+    {
+        if (table[i] != other.table[i])
+            return false;
+    }
+    return true;
 }
 
 template <class KEY, class VALUE>

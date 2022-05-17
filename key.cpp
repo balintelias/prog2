@@ -7,7 +7,7 @@ StrKey::StrKey(std::string param)
     key = param;
 }
 
-StrKey::StrKey(const char* param)
+StrKey::StrKey(const char *param)
 {
     key = param;
 }
@@ -25,5 +25,26 @@ std::string StrKey::getKey()
 int StrKey::hash()
 {
     std::hash<std::string> mystdhash;
+    return mystdhash(key);
+}
+
+IntKey::IntKey(int param)
+{
+    key = param;
+}
+
+void IntKey::setKey(int param)
+{
+    key = param;
+}
+
+int IntKey::getKey()
+{
+    return key;
+}
+
+int IntKey::hash()
+{
+    std::hash<int> mystdhash;
     return mystdhash(key);
 }
