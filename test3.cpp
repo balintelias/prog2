@@ -14,40 +14,44 @@
 
 int main(int argc, char const *argv[])
 {
-    try
+    init();
+    Container<StrKey, std::string> database;
+    menu();
+    StrKey key;
+    std::string value;
+    while (1)
     {
-        init();
-        Container<StrKey, std::string> database;
-        menu();
-        while (1)
+        char userInput = getUserInput();
+        getchar();
+        switch (userInput)
         {
-            char userInput = getUserInput();
-            getchar();
-            switch (userInput)
+        case 'H':
+            try
             {
-            case 'H':
-                std::cout << "Ilyenkor hozzaad" << std::endl;
-                break;
-            case 'L':
-                std::cout << "Ilyenkor lekerdez" << std::endl;
-                break;
-            case 'S':
-                std::cout << "Ilyenkor szerkeszt" << std::endl;
-                break;
-            case '\0':
-                std::cout << "Ervenytelen bemenet" << std::endl;
-                break;
+                key = getKeyFromUser();
+                value = getValueFromUser();
+                database.insert_or_assign(key, value);
             }
-            if (userInput == 'Q')
+            catch (const std::exception &e)
             {
-                break;
+                std::cerr << e.what() << '\n';
             }
+            break;
+        case 'L':
+            std::cout << "Ilyenkor lekerdez" << std::endl;
+            break;
+        case 'S':
+            std::cout << "Ilyenkor szerkeszt" << std::endl;
+            break;
+        case '\0':
+            std::cout << "Ervenytelen bemenet" << std::endl;
+            break;
         }
+        if (userInput == 'Q')
+        {
+            break;
+        }
+        menu();
     }
-    catch (const std::exception &e)
-    {
-        std::cerr << e.what() << '\n';
-    }
-
     return 0;
 }

@@ -5,6 +5,7 @@
 #include "container.hpp"
 #include "error.h"
 
+#include <exception>
 #include <iostream>
 #include <string>
 
@@ -17,5 +18,14 @@ char getUserInput();
 StrKey getKeyFromUser();
 
 std::string getValueFromUser();
+
+class InvalidInput : public std::exception
+{
+public:
+    std::string what()
+    {
+        return "Ervenytelen felhasznaloi bemenet.";
+    }
+};
 
 #endif

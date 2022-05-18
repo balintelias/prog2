@@ -10,6 +10,7 @@ private:
     std::string key;
 
 public:
+    StrKey();
     StrKey(std::string param);
     StrKey(const char* param);
     void setKey(std::string param);

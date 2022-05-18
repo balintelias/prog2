@@ -2,6 +2,10 @@
 
 #include <string>
 
+StrKey::StrKey()
+{
+}
+
 StrKey::StrKey(std::string param)
 {
     key = param;
