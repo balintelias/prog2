@@ -19,38 +19,47 @@ int main(int argc, char const *argv[])
     menu();
     StrKey key;
     std::string value;
+    char userInput;
     while (1)
     {
-        char userInput = getUserInput();
-        getchar();
+        try
+        {
+            userInput = getUserInput();
+        }
+        catch (InvalidInput &e)
+        {
+            std::cerr << e.what() << '\n';
+        }
         switch (userInput)
         {
         case 'H':
+            key = getKeyFromUser();
+            value = getValueFromUser();
+            database.insert_or_assign(key, value);
+            std::cout << "Sikeresen eltarolva";
+            break;
+        case 'L':
+            key = getKeyFromUser();
             try
             {
-                key = getKeyFromUser();
-                value = getValueFromUser();
-                database.insert_or_assign(key, value);
+                value = database.find(key).second;
+                std::cout << "A kulcshoz tartozo adat: " << value << std::endl;
             }
-            catch (const std::exception &e)
+            catch (NotInList &e)
             {
                 std::cerr << e.what() << '\n';
             }
             break;
-        case 'L':
-            std::cout << "Ilyenkor lekerdez" << std::endl;
-            break;
-        case 'S':
-            std::cout << "Ilyenkor szerkeszt" << std::endl;
-            break;
-        case '\0':
-            std::cout << "Ervenytelen bemenet" << std::endl;
+        case 'P':
+            std::cout << "Az adatbazisban szereplo adatok:" << std::endl;
+            database.print();
             break;
         }
         if (userInput == 'Q')
         {
             break;
         }
+        std::cout << std::endl;
         menu();
     }
     return 0;

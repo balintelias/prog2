@@ -14,28 +14,28 @@ void init()
 void menu()
 {
     std::cout << "Valassz, mit szeretnel tenni:" << std::endl
-              << "H - hozzaadas az adatbazishoz" << std::endl
+              << "H - hozzaadas az adatbazishoz/meglevo elem szerkesztese" << std::endl
               << "L - adat lekerdezese" << std::endl
-              << "S - adat szerkesztese" << std::endl
-              << "Q - kilepes a programbol"<<std::endl
+              << "P - adatbázis tartalmanak megjelenitese" << std::endl
+              << "Q - kilepes a programbol" << std::endl
               << std::endl;
 }
 
 char getUserInput()
 {
     char reply = getchar();
-    if (reply == 'H' || reply == 'L' || reply == 'S' || reply == 'Q')
-    {
+    getchar();
+    if (reply == 'H' || reply == 'L' || reply == 'S' || reply == 'Q' || reply == 'P')
         return reply;
-    }
-    return '\0';
+    InvalidInput ex;
+    throw ex;
 }
 
 StrKey getKeyFromUser()
 {
     std::cout << "Add meg a kulcsot:" << std::endl;
     std::string input;
-    // input helye
+    getline(std::cin, input);
     StrKey reply(input);
     return reply;
 }
@@ -44,6 +44,6 @@ std::string getValueFromUser()
 {
     std::cout << "Add meg az erteket:" << std::endl;
     std::string reply;
-    // input helye;
+    getline(std::cin, reply);
     return reply;
 }

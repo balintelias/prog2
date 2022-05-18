@@ -20,13 +20,13 @@ template <class KEY, class VALUE>
 class Container
 {
 private:
-    std::list<std::pair<KEY, VALUE>> *table; 
+    std::list<std::pair<KEY, VALUE>> *table;
     int table_size;
     // find auxiliary function
     std::pair<KEY, VALUE> find_helper(KEY &key);
     // insert auxiliary function - parameter: KEY and VALUE
     void insert(KEY &key, VALUE &value);
-    //erase auxiliary function?
+    // erase auxiliary function?
 
 public:
     // constructor
@@ -35,7 +35,7 @@ public:
     Container(Container &other);
     // destruktor
     ~Container();
-    
+
     // to insert/edit - method similar to std::map insert_or_assign method
     // parameter: KEY and VALUE
     bool insert_or_assign(KEY &key, VALUE &value);
@@ -47,7 +47,7 @@ public:
     // print the contents of container (for testing)
     void print();
     // operators:~~~~~~~~~~~~~~~
-    //assigning operator
+    // assigning operator
     void operator=(Container &other);
     // equality test
     bool operator==(Container &other);
@@ -153,7 +153,7 @@ void Container<KEY, VALUE>::print()
     {
         for (auto j : table[i])
         {
-            std::cout << j.first.getKey() << j.second << std::endl;
+            std::cout << j.first.getKey() << " " << j.second << std::endl;
         }
     }
 }
