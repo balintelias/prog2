@@ -16,7 +16,7 @@ void menu()
     std::cout << "Valassz, mit szeretnel tenni:" << std::endl
               << "H - hozzaadas az adatbazishoz/meglevo elem szerkesztese" << std::endl
               << "L - adat lekerdezese" << std::endl
-              << "P - adatbázis tartalmanak megjelenitese" << std::endl
+              << "P - adatbazis tartalmanak megjelenitese" << std::endl
               << "Q - kilepes a programbol" << std::endl
               << std::endl;
 }

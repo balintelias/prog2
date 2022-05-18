@@ -182,19 +182,6 @@ bool Container<KEY, VALUE>::operator==(Container<KEY, VALUE> &other)
     return true;
 }
 
-/* template <class KEY, class VALUE>
-bool Container<KEY, VALUE>::operator==(Container<KEY, VALUE> &other)
-{
-    if (this->table_size != other.table_size)
-        return false;
-    for (int i = 0; i < table_size; i++)
-    {
-        if (table[i] != other.table[i])
-            return false;
-    }
-    return true;
-} */
-
 template <class KEY, class VALUE>
 VALUE Container<KEY, VALUE>::operator[](KEY &key)
 {
