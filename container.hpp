@@ -11,11 +11,6 @@
 #include <string>
 #include <bits/stdc++.h>
 
-// template <class KEY, class VALUE>
-// typedef StrKey KEY;
-// typedef std::string VALUE;
-
-// ungeneric implementation, StrKey key and std::string value
 template <class KEY, class VALUE>
 class Container
 {
@@ -26,8 +21,6 @@ private:
     std::pair<KEY, VALUE> find_helper(KEY &key);
     // insert auxiliary function - parameter: KEY and VALUE
     void insert(KEY &key, VALUE &value);
-    // erase auxiliary function?
-
 public:
     // constructor
     Container(int param = 128);
@@ -35,7 +28,6 @@ public:
     Container(Container &other);
     // destruktor
     ~Container();
-
     // to insert/edit - method similar to std::map insert_or_assign method
     // parameter: KEY and VALUE
     bool insert_or_assign(KEY &key, VALUE &value);
@@ -84,7 +76,7 @@ void Container<KEY, VALUE>::insert(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
-    index = abs(index % table_size);
+    index = index % table_size;
     // push back in list
     std::pair<KEY, VALUE> node(key, value);
     table[index].push_back(node);
@@ -95,7 +87,7 @@ bool Container<KEY, VALUE>::insert_or_assign(KEY &key, VALUE &value)
 {
     // hash key
     int index = key.hash();
-    index = abs(index % table_size);
+    index = index % table_size;
 
     for (auto j : table[index])
     {
@@ -115,7 +107,7 @@ void Container<KEY, VALUE>::erase(KEY &key)
 {
     // hash key
     int index = key.hash();
-    index = abs(index % table_size);
+    index = index % table_size;
 
     table[index].remove_if([key](std::pair<KEY, VALUE> x)
                            { return x.first == key; });
@@ -126,7 +118,7 @@ template <class KEY, class VALUE>
 std::pair<KEY, VALUE> Container<KEY, VALUE>::find_helper(KEY &key)
 {
     int index = key.hash();
-    index = abs(index % table_size);
+    index = index % table_size;
     for (auto j : table[index])
     {
         if (j.first == key)

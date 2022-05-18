@@ -29,7 +29,7 @@ std::string StrKey::getKey()
 int StrKey::hash()
 {
     std::hash<std::string> mystdhash;
-    return mystdhash(key);
+    return abs(mystdhash(key));
 }
 
 IntKey::IntKey(int param)
@@ -50,5 +50,5 @@ int IntKey::getKey()
 int IntKey::hash()
 {
     std::hash<int> mystdhash;
-    return mystdhash(key);
+    return abs(mystdhash(key));
 }
