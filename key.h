@@ -12,29 +12,24 @@ private:
 public:
     StrKey();
     StrKey(std::string param);
-    StrKey(const char* param);
+    StrKey(const char *param);
     void setKey(std::string param);
     std::string getKey();
     int hash(); // implementation: std::hash
-    bool operator==(StrKey const &other) const
-    {
-        return key == other.key;
-    }
+    bool operator==(StrKey const &other) const { return key == other.key; }
 };
 
 class IntKey
 {
 private:
     int key;
+
 public:
     IntKey(int param);
     void setKey(int param);
     int getKey();
     int hash(); // implementation: std::hash
-    bool operator==(IntKey const &other) const
-    {
-        return key == other.key;
-    }
+    bool operator==(IntKey const &other) const { return key == other.key; }
 };
 
 #endif

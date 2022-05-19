@@ -37,7 +37,7 @@ public:
     // parameter: KEY
     std::pair<KEY, VALUE> find(KEY &key);
     // print the contents of container (for testing)
-    void print();
+    void print() const;
     // operators:~~~~~~~~~~~~~~~
     // assigning operator
     void operator=(Container &other);
@@ -138,7 +138,7 @@ std::pair<KEY, VALUE> Container<KEY, VALUE>::find(KEY &key) // find() works diff
 }
 
 template <class KEY, class VALUE>
-void Container<KEY, VALUE>::print()
+void Container<KEY, VALUE>::print() const
 {
     for (int i = 0; i < table_size; i++)
     {
