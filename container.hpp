@@ -111,7 +111,6 @@ void Container<KEY, VALUE>::erase(KEY &key)
 
     table[index].remove_if([key](std::pair<KEY, VALUE> x)
                            { return x.first == key; });
-    //([](int n){ return n > 10; });
 }
 
 template <class KEY, class VALUE>
@@ -154,7 +153,7 @@ template <class KEY, class VALUE>
 void Container<KEY, VALUE>::operator=(Container<KEY, VALUE> &other)
 {
     this->table_size = other.table_size;
-    //
+    
     for (int i = 0; i < table_size; i++)
     {
         table[i] = other.table[i];
@@ -177,7 +176,6 @@ bool Container<KEY, VALUE>::operator==(Container<KEY, VALUE> &other)
 template <class KEY, class VALUE>
 VALUE Container<KEY, VALUE>::operator[](KEY &key)
 {
-
     return find(key).second;
 }
 

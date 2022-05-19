@@ -21,11 +21,22 @@ void menu()
               << std::endl;
 }
 
+bool isValid(char param)
+{
+    std::string valid = "HLPQ";
+    for (int i = 0; i < valid.length(); i++)
+    {
+        if (param == valid[i])
+            return true;
+    }
+    return false;
+}
+
 char getUserInput()
 {
     char reply = getchar();
     getchar();
-    if (reply == 'H' || reply == 'L' || reply == 'S' || reply == 'Q' || reply == 'P')
+    if (isValid(reply))
         return reply;
     InvalidInput ex;
     throw ex;
